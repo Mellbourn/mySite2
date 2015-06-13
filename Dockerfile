@@ -1,14 +1,10 @@
 FROM node:0.12-onbuild
 
-RUN \
-    npm install -g gulp && \
-    npm install -g bower && \
-    npm install -g tsd && \
-	npm install && \
-	bower install --config.interactive=false --allow-root && \
-	gulp clean && \
-	gulp build
-#	tsd update && \?
+RUN npm install && \
+    node_modules/.bin/tsd update && \
+    node_modules/.bin/bower install --config.interactive=false --allow-root && \
+    node_modules/.bin/gulp clean && \
+    node_modules/.bin/gulp build
 
 # replace this with your application's default port
 EXPOSE 3000
